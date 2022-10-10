@@ -11,7 +11,7 @@ public class PhoneValidationService {
         PhoneNumberUtil phoneUtil = PhoneNumberUtil.getInstance();
         Phonenumber.PhoneNumber phoneNumber = null;
         try{
-            phoneNumber = phoneUtil.parse(phoneNum, "IN");
+            phoneNumber = phoneUtil.parse(phoneNum, "RS");
         }catch (NumberParseException e){
             e.printStackTrace();
         }

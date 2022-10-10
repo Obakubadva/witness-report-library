@@ -14,8 +14,8 @@ public class GeoIPLocationService {
 
     private DatabaseReader dbReader;
 
-     public GeoIPLocationService() throws IOException, GeoIp2Exception{
-         File db = new File("C:\\Users\\Koce\\Downloads\\GeoLite2-City.mmdb");
+     public GeoIPLocationService() throws IOException{
+         File db = new File("C:\\Users\\obaku\\IdeaProjects\\GeoLite2-City.mmdb");
          dbReader = new DatabaseReader.Builder(db).build();
      }
 
@@ -26,7 +26,7 @@ public class GeoIPLocationService {
 
          String country = responseCity.getCountry().getName();
          String city = responseCity.getCity().getName();
-         return new GeoIP(ipA, city,country);
+         return new GeoIP(ipA, country,city);
      }
 
 }

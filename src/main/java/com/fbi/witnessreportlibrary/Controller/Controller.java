@@ -7,15 +7,11 @@ import com.fbi.witnessreportlibrary.Services.FileService;
 import com.fbi.witnessreportlibrary.Services.PhoneValidationService;
 import com.maxmind.geoip2.exception.GeoIp2Exception;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.servlet.ServletOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @RestController
 @RequestMapping("/cases")
@@ -51,7 +47,7 @@ public class Controller {
     @GetMapping("/titles/search")
     public CaseModel getCaseByName(@RequestParam(value = "title") String name){
         for (CaseModel model:getJsoItems()) {
-            if (model.getTitle().equals(name)){
+            if (model.getTitle().equalsIgnoreCase(name)){
             return model;
             }
         }
@@ -62,9 +58,9 @@ public class Controller {
                                             @RequestParam (value = "title", required = true) String name,
                                             @RequestParam (value = "phoneNumber", required = true) String phoneNumber){
             if (getCaseByName(name) != null && validate.phoneValidation(phoneNumber)){
-                return "redirect:/reports";
+                return "redirect:/reports good";
             }else{
-                return "redirect:/titles";
+                return "redirect:/titles bed";
             }
         }
         @PostMapping("/reports")
